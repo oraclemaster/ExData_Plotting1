@@ -13,6 +13,16 @@
 # change working directory, use IF necessary
 # setwd("C:/Documents and Settings/c048978/My Documents/Personali/Sorgenti/R/Exploratory Data Analysis/Course Project1/") #change working directory
 
+# load library used in the script 
+library(downloader) # need it for dowload from https
+
+# check if file with data exists and, if not, download and unzip it in the working directory
+if(!file.exists("household_power_consumption.txt")){
+    download("https://d396qusza40orc.cloudfront.net/exdata%2Fdata%2Fhousehold_power_consumption.zip", 
+                  "exdata-data-household_power_consumption.zip")
+    unzip("exdata-data-household_power_consumption.zip")
+}
+
 # load input CSV data set
 ds <- read.csv("household_power_consumption.txt", header= TRUE, sep = ";", na.strings = "?")
 

@@ -16,6 +16,16 @@
 # change local setting to USA, use IF necessary
 #Sys.setlocale("LC_TIME", "en_US.UTF-8") 
 
+# load library used in the script 
+library(downloader) # need it for dowload from https
+
+# check if file with data exists and, if not, download and unzip it in the working directory
+if(!file.exists("household_power_consumption.txt")){
+    download("https://d396qusza40orc.cloudfront.net/exdata%2Fdata%2Fhousehold_power_consumption.zip", 
+             "exdata-data-household_power_consumption.zip")
+    unzip("exdata-data-household_power_consumption.zip")
+}
+
 # load input CSV data set
 ds <- read.csv("household_power_consumption.txt", 
                header= TRUE, 
@@ -38,4 +48,3 @@ plot(dsShort$Date, dsShort$Global_active_power,
 # save plot2 and close the PNG device
 dev.copy(png, "plot2.png", width = 480, height = 480)
 dev.off()
-
